@@ -1,0 +1,35 @@
+@import '@styles/mixins';
+@import '@styles/constants';
+
+.root {
+  @include container__column();
+  width: 70%;
+}
+
+.title {
+  @include title();
+}
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  margin-bottom: $main__margin__size;
+}
+.post__input {
+  @include input__large();
+  margin-right: 8px;
+}
+
+.post__textarea {
+  width: 100%;
+  height: 216px;
+  resize: none;
+
+  border-radius: 12px;
+  border: 1px $main__gray solid;
+  margin-bottom: $main__margin__size;
+}
+
+.post_button_large {
+  @include button_large();
+}
