@@ -1,30 +1,52 @@
 @import '@styles/constants';
 
-@mixin root {
+@mixin container__column {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-grow: 0;
+  padding: $main__padding__size;
 
+  width: 570px;
+
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+
+  animation: fadein 2s;
+  @keyframes fadein {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+@mixin container__row {
+  display: flex;
   width: 100%;
+  justify-content: space-between;
+  align-items: center;
 }
 
 @mixin input__large {
-  width: 50%;
-  height: 3rem;
+  width: 100%;
+  height: $main__height;
 
-  border-radius: 0.75rem;
+  border-radius: 12px;
   border: 1px $main__gray solid;
 
-  padding: 0 0.5rem;
+  padding: 0 8px;
 }
 
 @mixin input__small {
-  width: 80%;
-  height: 3rem;
+  width: 100%;
+  height: $main__height;
 
-  border-radius: 0.75rem;
+  border-radius: 12px;
   border: 1px $main__gray solid;
 
   padding: 0 0.5rem;
@@ -32,26 +54,26 @@
 }
 
 @mixin button_large {
-  width: 50%;
-  height: 3rem;
+  width: 100%;
+  height: $main__height;
 
-  border-radius: 0.75rem;
+  border-radius: 12px;
   border: 0;
 
-  margin-top: 1rem;
   background-color: $primary;
   color: $main__white;
 
   &:hover {
     background-color: $secondary;
+    transition: background-color 300ms ease-in-out;
   }
 }
 
 @mixin button_small {
   width: 20%;
-  height: 3rem;
+  height: $main__height;
 
-  border-radius: 0.75rem;
+  border-radius: 12px;
   border: 0;
 
   background-color: $primary;
@@ -59,42 +81,32 @@
 
   &:hover {
     background-color: $secondary;
-  }
-
-  &.confirm {
-    width: 49%;
+    transition: background-color 300ms ease-in-out;
   }
 }
 
 @mixin title {
   color: $primary;
-  margin-bottom: 2rem;
-}
-
-@mixin wrapper {
-  display: flex;
-  width: 50%;
-  justify-content: space-between;
-  align-items: center;
+  margin-bottom: 32px;
 }
 
 @mixin text__wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1rem 0;
+  margin: 12px 0;
 }
 
 @mixin error {
-  margin: 0.75rem 0;
+  margin: 12px 0;
   text-align: center;
   color: $main__red;
-  font-size: 0.75rem;
+  font-size: 12px;
 }
 
 @mixin text {
-  margin: 0 1rem;
+  margin: 0 16px;
   text-align: center;
-  font-size: 0.75rem;
+  font-size: 12px;
   cursor: pointer;
 }

@@ -21,18 +21,18 @@ const Sidebar = (props) => {
       <li
         className={styles.list}
         onClick={() => {
-          history.push('/my/post');
+          history.push('/my/');
         }}
       >
-        내 게시판
+        비밀번호 수정
       </li>
       <li
         className={styles.list}
         onClick={() => {
-          history.push('/my/chat');
+          history.push('/my/post');
         }}
       >
-        내 채팅
+        내 게시판
       </li>
     </ul>
   );

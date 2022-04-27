@@ -1,0 +1,8 @@
+@import '@styles/constants';
+
+.root {
+  min-height: calc(100vh - 144px);
+  display: flex;
+  justify-content: flex-start;
+  margin: $main__margin__size;
+}

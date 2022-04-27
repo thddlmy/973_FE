@@ -1,21 +1,28 @@
 @import '@styles/constants';
+@import '@styles/mixins';
 
 .root {
-  width: 15%;
-  height: 100%;
-  // background: linear-gradient(to right, $primary, $point);
+  @include container__column();
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 256px;
   background-color: $primary;
+  flex-shrink: 0;
+  margin-right: $main__margin__size;
+  padding: 16px 0;
 }
 
 .list {
-  font-size: 0.75rem;
+  width: 100%;
+  font-size: 14px;
   list-style: none;
-  padding: 1.25rem 2rem;
+  padding: 20px 32px;
   color: $main__white;
   cursor: pointer;
 
   &:hover {
     background-color: $main__white;
     color: $primary;
+    transition: color 500ms ease-in-out, background-color 500ms ease-in-out;
   }
 }

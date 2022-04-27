@@ -1,11 +1,11 @@
 @import '@styles/mixins';
 
 .root {
-  @include root();
+  @include container__column();
 }
 
 .wrapper {
-  @include wrapper();
+  @include container__row();
 }
 
 .input__large {
@@ -18,6 +18,14 @@
 
 .button__small {
   @include button_small();
+
+  &.confirm {
+    width: 50%;
+  }
+
+  &.confirm:first-child {
+    margin-right: 8px;
+  }
 }
 
 .title {

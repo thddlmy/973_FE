@@ -1,10 +1,10 @@
 import React, { useRef } from 'react';
-import styles from './MyInfoEdit.module.scss';
+import styles from './MyInfoEditForm.module.scss';
 import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
-const MyInfoEdit = (props) => {
+const MyInfoEditForm = (props) => {
   const {
     values,
     onChange,
@@ -36,26 +36,24 @@ const MyInfoEdit = (props) => {
             className={styles.profile__image}
             src={
               values.srcUrl ||
-              'https://user-images.githubusercontent.com/69751205/163665912-a318a7a0-3c6f-4fd3-a8b0-d684811aa7ca.jpeg'
+              'https://user-images.githubusercontent.com/69751205/165550742-f15e262d-8f90-4096-9dfa-30801c211827.png'
             }
             alt=""
           />
         </div>
-        <input
-          className={styles.profile__input}
-          type="text"
-          name="nickname"
-          value={values.name}
-          placeholder="변경할 이메일을 입력해주세요."
-          onChange={onChange}
-        />
-        <button
-          className={styles.profile_button_small}
-          type="button"
-          // onClick={}
-        >
-          확인
-        </button>
+        <div className={styles.profile__input__wrapper}>
+          <input
+            className={styles.profile__input}
+            type="text"
+            name="nickname"
+            value={values.name}
+            placeholder="변경할 닉네임을 입력해주세요."
+            onChange={onChange}
+          />
+          <button className={styles.profile_button_small} type="button">
+            확인
+          </button>
+        </div>
       </div>
       <textarea
         className={styles.profile__textarea}
@@ -72,4 +70,4 @@ const MyInfoEdit = (props) => {
   );
 };
 
-export default MyInfoEdit;
+export default MyInfoEditForm;
