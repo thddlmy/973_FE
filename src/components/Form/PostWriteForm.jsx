@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './PostWriteForm.module.scss';
 import classNames from 'classnames/bind';
 import { withRouter } from 'react-router-dom';
+import { LocationModal, SportModal } from '@components/Modal';
 
 const cx = classNames.bind(styles);
 
@@ -10,11 +11,21 @@ const PostWriteForm = (props) => {
     values = {},
     errors = {},
     onChange = () => console.log('onChange'),
-    onSubmit = () => console.log('onChange'),
+    onSubmit = () => console.log('onSubmit'),
+    onLocationClick = () => console.log('onLocationClick'),
     className: rootClassName,
   } = props;
-
+  const [isLocationOpen, setIsLocationOpen] = useState(true);
+  const [isSportOpen, setIsSportOpen] = useState(true);
   const className = cx(styles.root, rootClassName);
+
+  const handleLocationClick = () => {
+    setIsLocationOpen(!isLocationOpen);
+  };
+
+  const handleSportClick = () => {
+    setIsSportOpen(!isSportOpen);
+  };
 
   return (
     <form className={className} onSubmit={onSubmit}>
@@ -29,26 +40,31 @@ const PostWriteForm = (props) => {
           placeholder="제목을 입력하세요."
           onChange={onChange}
         />
-        {/* 과목 */}
-        <select
-          className={styles.post__select}
-          name="subject"
-          onChange={onChange}
-        >
-          <option value="default">과목</option>
-          <option value="health">헬스</option>
-          <option value="soccer">축구</option>
-        </select>
-        {/* 위치 */}
-        <select
-          className={styles.post__select}
-          name="location"
-          onChange={onChange}
-        >
-          <option value="default">지역</option>
-          <option value="seoul">서울</option>
-        </select>
       </div>
+      {/* 위치 */}
+      <div className={styles.modal} onClick={handleLocationClick}>
+        지역 선택하기 &gt;
+      </div>
+      {isLocationOpen ? (
+        <LocationModal
+          onClick={handleLocationClick}
+          onLocationClick={onLocationClick}
+        />
+      ) : (
+        ''
+      )}
+      {/* 종목 */}
+      <div className={styles.modal} onClick={handleSportClick}>
+        종목 선택하기 &gt;
+      </div>
+      {isSportOpen ? (
+        <SportModal
+          onClick={handleSportClick}
+          onLocationClick={onLocationClick}
+        />
+      ) : (
+        ''
+      )}
       {/* 본문 */}
       <textarea
         className={styles.post__textarea}
