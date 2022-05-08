@@ -1,8 +1,10 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { SigninForm } from '@components/Form';
 import { useForm } from '@hooks';
 import { validationEmail } from '@utils/validation';
-import { postSignin } from '../../components/apis/auth';
+import { postSignin } from '@apis/auth';
+import { useUsers } from '@contexts/UserProvider';
 
 const SigninFormContainer = (props) => {
   const { values, errors, handleChange, handleSubmit } = useForm({
@@ -10,9 +12,12 @@ const SigninFormContainer = (props) => {
       email: '',
       password: '',
     },
-    onSubmit: ({ email, password }) => {
-      const response = postSignin({ email, password });
-      console.log(response);
+    onSubmit: async ({ email, password }) => {
+      const response = await postSignin({ email, password });
+
+      if (!response) return;
+      addUser(response.data.accessToken);
+      history.push('/');
     },
     validate: ({ email, password }) => {
       const newErrors = {};
@@ -23,6 +28,8 @@ const SigninFormContainer = (props) => {
       return newErrors;
     },
   });
+  const { addUser } = useUsers();
+  const history = useHistory();
 
   return (
     <SigninForm
