@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { POST } from './axios';
-// const { REACT_APP_END_POINT } = process.env;
 
 export const postSignin = async ({ email, password }) => {
   const response = await POST({
@@ -19,11 +18,14 @@ export const postSignup = async ({
   nickname,
   password,
 }) => {
-  const response = await axios.post('/user/join', {
-    email,
-    password,
-    confirmPassword,
-    name: nickname,
+  const response = await POST({
+    url: 'user/join',
+    data: {
+      email,
+      password,
+      confirmPassword,
+      nickname,
+    },
   });
   return response;
 };

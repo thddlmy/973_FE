@@ -26,7 +26,7 @@ const Topbar = (props) => {
         <button
           type="button"
           onClick={() => {
-            history.push('/student');
+            history.push('/player');
           }}
         >
           플레이어
@@ -34,7 +34,7 @@ const Topbar = (props) => {
         <button
           type="button"
           onClick={() => {
-            history.push('/teacher');
+            history.push('/coach');
           }}
         >
           코치

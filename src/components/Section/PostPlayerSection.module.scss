@@ -1,0 +1,15 @@
+@import '@styles/mixins';
+@import '@styles/constants';
+
+.root {
+  width: 80%;
+  text-align: center;
+}
+
+.title {
+  @include title();
+}
+
+.cards__wrapper {
+  margin-bottom: $main__margin__size;
+}

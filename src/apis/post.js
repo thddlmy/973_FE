@@ -21,6 +21,20 @@ export const postWritePost = async ({
   return response;
 };
 
+export const getPlayerPosts = async ({ page }) => {
+  const response = await GET({
+    url: '/post/player/',
+  });
+  return response;
+};
+
+export const getCoachPosts = async ({ page }) => {
+  const response = await GET({
+    url: '/post/coach/',
+  });
+  return response;
+};
+
 export const getPost = async ({ id }) => {
   const response = await GET({
     url: `/post/${id}`,

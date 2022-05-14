@@ -9,6 +9,7 @@ import {
   PostWritePage,
   PostDetailPage,
   PostEditPage,
+  PostPlayerPage,
 } from '@pages';
 import { Topbar } from '@components/Bar';
 import PrivateRoute from '@utils/privateRoute';
@@ -23,9 +24,8 @@ function App() {
         <PublicRoute exact from="/signup" to="/my" component={SignupPage} />
         <PublicRoute exact from="/signin" to="/my" component={SigninPage} />
         <PrivateRoute exact from="/my" component={MyPage} />
-        <Route path="/player" exact component={HomePage} />
+        <Route path="/player" exact component={PostPlayerPage} />
         <Route path="/coach" exact component={HomePage} />
-        <Route path="/club" exact component={HomePage} />
         <PrivateRoute exact from="/write/player" component={PostWritePage} />
         <PrivateRoute exact from="/write/coach" component={PostWritePage} />
         <Route path="/view/:id" exact component={PostDetailPage} />

@@ -5,3 +5,4 @@ export { default as MyPage } from './MyPage';
 export { default as PostWritePage } from './PostWritePage';
 export { default as PostDetailPage } from './PostDetailPage';
 export { default as PostEditPage } from './PostEditPage';
+export { default as PostPlayerPage } from './PostPlayerPage';
