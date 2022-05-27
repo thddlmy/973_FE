@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { MyInfoEditForm } from '@components/Form';
 import { useForm } from '@hooks';
 import { useUsers } from '@contexts/UserProvider';
+import { getMyInfo, editMyInfo } from '@apis/auth';
 
 const MyInfoEditContainer = (props) => {
   const {
@@ -16,16 +17,44 @@ const MyInfoEditContainer = (props) => {
       email: '',
       nickname: '',
       nicknameCheck: '',
-      introduce: '',
+      intro: '',
+      profileImage: '',
     },
-    onSubmit: () => {},
+    onSubmit: async ({ email, intro, nickname, profileImageFile }) => {
+      console.log(email, intro, user.userId, nickname, profileImageFile);
+      const response = await editMyInfo({
+        email,
+        intro,
+        id: user.userId,
+        nickname,
+        profileImageFile,
+      });
+
+      console.log(response);
+    },
     validate: () => {},
   });
-  const { removeUser } = useUsers();
+  const { user, removeUser } = useUsers();
 
   const handleClick = () => {
     removeUser();
   };
+
+  const init = useCallback(async () => {
+    const { data } = await getMyInfo({ id: user.userId });
+    console.log(data);
+
+    setValues({
+      email: data.email,
+      intro: data.intro,
+      nickname: data.nickname,
+      profileImage: data.profileImage,
+    });
+  }, [user.userId, setValues]);
+
+  useEffect(() => {
+    init();
+  }, [init]);
 
   return (
     <MyInfoEditForm

@@ -32,7 +32,7 @@ const ChatSectionContainer = () => {
     e.preventDefault();
 
     stomp.send(
-      `/pub/chat/message/${values.chatRoomId}`,
+      `/pub/chat/message`,
       {},
       JSON.stringify({
         userId: values.senderId,
