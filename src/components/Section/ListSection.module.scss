@@ -1,0 +1,62 @@
+@import '@styles/mixins';
+@import '@styles/constants';
+
+.root {
+  width: 80%;
+  text-align: center;
+}
+
+.my {
+  text-align: left;
+}
+
+.title {
+  @include title();
+}
+
+.list {
+  @include cards_wrapper();
+}
+
+.link {
+  @include write_button();
+}
+
+.element {
+  @include card_wrapper();
+
+  & .nickname {
+    @include card_nickname();
+  }
+
+  & .date {
+    @include card_date();
+  }
+
+  & .post {
+    position: relative;
+
+    & .text {
+      width: 70%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    & .badges {
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      text-align: right;
+
+      & .badge {
+        @include badge();
+      }
+    }
+  }
+}
+
+.nodata {
+  @include nodata();
+}

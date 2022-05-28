@@ -1,0 +1,41 @@
+@import '@styles/mixins';
+@import '@styles/constants';
+
+.root {
+  @include card_wrapper();
+  height: 120px;
+  overflow: scroll;
+
+  & .nickname {
+    @include card_nickname();
+  }
+
+  & .date {
+    @include card_date();
+  }
+
+  & .post {
+    position: relative;
+
+    & .text {
+      width: 70%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 8px;
+    }
+
+    & .badges {
+      width: 30%;
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      text-align: right;
+
+      & .badge {
+        @include badge();
+      }
+    }
+  }
+}

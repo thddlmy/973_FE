@@ -1,20 +1,10 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { PostPlayerSection } from '@components/Section';
+import { ListSection } from '@components/Section';
 import { getPlayerPosts } from '@apis/post';
 import { Paginationbar } from '@components/Bar';
 
-const initialState = [
-  {
-    title: '',
-    location: [],
-    sport: [],
-    text: '',
-    userId: '',
-  },
-];
-
 const PostPlayerSectionContainer = () => {
-  const [values, setValues] = useState(initialState);
+  const [values, setValues] = useState([]);
   const [page, setPage] = useState(1);
 
   const init = useCallback(async () => {
@@ -24,8 +14,6 @@ const PostPlayerSectionContainer = () => {
 
   const handleClick = async (e) => {
     const { id, value } = e.target;
-
-    console.log(page);
 
     if (value) {
       const response = await getPlayerPosts({ page: value });
@@ -42,7 +30,7 @@ const PostPlayerSectionContainer = () => {
 
   return (
     <>
-      <PostPlayerSection values={values} />
+      <ListSection values={values} type="player" title="플레이어" />
       <Paginationbar page={page} onClick={handleClick} />
     </>
   );

@@ -3,24 +3,13 @@ import { ChatListSection } from '@components/Section';
 import { getChats } from '@apis/chat';
 import { useUsers } from '@contexts/UserProvider';
 
-const initialState = [
-  {
-    title: '',
-    location: [],
-    sport: [],
-    text: '',
-    userId: '',
-  },
-];
-
 const ChatListSectionContainer = () => {
-  const [values, setValues] = useState(initialState);
+  const [values, setValues] = useState([]);
   const { user } = useUsers();
 
   const init = useCallback(async () => {
     const response = await getChats({ userId: user.userId });
     setValues(response.data);
-    console.log(response);
   }, [user.userId]);
 
   useEffect(() => {
