@@ -10,15 +10,26 @@ const UserProvider = ({ children }) => {
     userId: 0,
     email: '',
     nickname: '',
+    profileImage: '',
+    intro: '',
   });
 
-  const addUser = ({ accessToken, userId, email, nickname }) => {
+  const addUser = ({
+    accessToken,
+    userId,
+    email,
+    nickname,
+    profileImage,
+    intro,
+  }) => {
     sessionStorage.setItem('authorization', accessToken);
     setUser({
       isAuthorized: true,
       userId,
       email,
       nickname,
+      profileImage,
+      intro,
     });
   };
 

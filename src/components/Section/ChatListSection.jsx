@@ -25,7 +25,10 @@ const ChatListSection = (props) => {
           >
             <img
               className={styles.profile}
-              src="https://973s3.s3.ap-northeast-2.amazonaws.com/3c861103-5d9d-4d1a-af4b-7565571cbac0.png"
+              src={
+                element.profileImage ||
+                'https://973s3.s3.ap-northeast-2.amazonaws.com/3c861103-5d9d-4d1a-af4b-7565571cbac0.png'
+              }
               alt=""
             />
             <span key={element.receiverId}>{element.receiverNickname}</span>

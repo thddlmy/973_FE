@@ -10,6 +10,7 @@
 
 .list__wrapper {
   width: 100%;
+  min-height: 420px;
 }
 
 .chat__list {
@@ -21,7 +22,7 @@
 
 .profile {
   width: $main_size;
-  height: auto;
+  height: $main_size;
   margin-right: 12px;
   border-radius: 50%;
   border: 1px #a7a7a7 solid;

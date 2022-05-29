@@ -19,27 +19,40 @@ const ChatSection = (props) => {
   return (
     <div className={className}>
       <h1 className={styles.title}>채팅</h1>
-      <div className={styles.message__list}>
+      <div className={styles.list}>
         {values.messages &&
           values.messages.map((element) => (
             <div
-              className={
+              className={cx(
+                styles.message,
                 values.senderId === element.userId
-                  ? styles.message__sender
-                  : styles.message__receiver
-              }
+                  ? styles.sender
+                  : styles.receiver
+              )}
               key={element.messageTime}
             >
-              <div className={styles.message} key={element.messageTime}>
+              {values.senderId !== element.userId && (
+                <img
+                  className={styles.image}
+                  alt=""
+                  src={
+                    element.profileImage ||
+                    'https://973s3.s3.ap-northeast-2.amazonaws.com/3c861103-5d9d-4d1a-af4b-7565571cbac0.png'
+                  }
+                />
+              )}
+              <span className={styles.content}>
+                <span className={styles.nickname}>{element.nickname}</span>
                 {element.content}
-                <span>{element.messageTime.split('T')[1]}</span>
-              </div>
+              </span>
+              <span className={styles.date}>
+                {element.messageTime.split('T')[1]}
+              </span>
             </div>
           ))}
       </div>
-      <form className={styles.message__input_wrapper} onSubmit={onSubmit}>
+      <form className={styles.input_wrapper} onSubmit={onSubmit}>
         <input
-          className={styles.message__input}
           value={message}
           type="text"
           name="message"

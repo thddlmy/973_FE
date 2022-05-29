@@ -16,6 +16,15 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 12px;
+
+  & .image {
+    display: block;
+    margin-left: auto;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+  }
+
   & .author {
     color: $primary;
     margin-right: 8px;

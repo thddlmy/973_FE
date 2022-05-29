@@ -16,6 +16,8 @@ const PostDetailSection = (props) => {
   } = props;
   const className = cx(styles.root, rootClassName);
 
+  console.log(values);
+
   return (
     <div className={className}>
       <h1 className={styles.title}>게시글 조회</h1>
@@ -28,7 +30,15 @@ const PostDetailSection = (props) => {
           </span>
         </div>
         <div className={styles.detail_wrapper}>
-          <span className={styles.author}>{values.nickname || '김빡빡'}</span>
+          <img
+            className={styles.image}
+            src={
+              values.profileImage ||
+              'https://973s3.s3.ap-northeast-2.amazonaws.com/3c861103-5d9d-4d1a-af4b-7565571cbac0.png'
+            }
+            alt=""
+          />
+          <span className={styles.author}>{values.nickname || 'noname'}</span>
           {!isMine && (
             <button type="button" onClick={onChatClick}>
               채팅
@@ -41,7 +51,7 @@ const PostDetailSection = (props) => {
       </div>
       {/* 위치 */}
       <div className={styles.badge_wrapper}>
-        {values.location?.map(
+        {values.area?.map(
           (element) =>
             element && (
               <span className={styles.badge} value={element} key={element}>
@@ -52,7 +62,7 @@ const PostDetailSection = (props) => {
       </div>
       {/* 종목 */}
       <div className={cx(styles.badge_wrapper, styles.last)}>
-        {values.sport?.map(
+        {values.category?.map(
           (element) =>
             element && (
               <span className={styles.badge} value={element} key={element}>

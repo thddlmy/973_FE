@@ -39,10 +39,11 @@ const ChatSectionContainer = () => {
       messages: [
         ...values.messages,
         {
+          nickname: values.senderNickname,
           userId: values.senderId,
           roomId: values.chatRoomId,
           content: message,
-          messageTime: new Date().toLocaleTimeString().replace(' ', 'T'),
+          messageTime: `T${new Date().toTimeString()}`.split(' ')[0],
         },
       ],
     });

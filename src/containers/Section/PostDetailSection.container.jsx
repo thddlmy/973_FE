@@ -15,18 +15,9 @@ const PostDetailSectionContainer = () => {
   );
 
   const init = useCallback(async () => {
-    const { data } = await getPost({ id });
+    const response = await getPost({ id });
 
-    setValues({
-      title: data.title,
-      text: data.text,
-      type: data.type,
-      userId: data.userId,
-      location: data.area,
-      sport: data.category,
-      nickname: data.nickname,
-      date: data.date,
-    });
+    setValues(response.data);
   }, [id]);
 
   const handleDeleteClick = async () => {

@@ -97,7 +97,6 @@ const useForm = ({ initialValues, onSubmit, validate }) => {
     };
   };
 
-  // 위치 모달에서 "확인" 눌렀을 때 호출
   const handleListClick = ({ name, value }) => {
     setValues({ ...values, [name]: value });
   };

@@ -9,7 +9,7 @@ const Banner = (props) => {
   const className = cx(styles.root, rootClassName);
   return (
     <div className={className}>
-      <h1 className={styles.title}>Fitnessu</h1>
+      <h1 className={styles.title}>Exercise for better life</h1>
     </div>
   );
 };

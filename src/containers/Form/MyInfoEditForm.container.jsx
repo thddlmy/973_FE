@@ -33,7 +33,9 @@ const MyInfoEditContainer = (props) => {
         alert('내 정보를 수정했습니다.');
       }
     },
-    validate: () => {},
+    validate: ({ intro }) => {
+      if (!intro) return { intro: '소개글을 입력해주세요.' };
+    },
   });
   const { user, removeUser } = useUsers();
 
