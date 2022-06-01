@@ -17,10 +17,16 @@
 
 .modal {
   @include modal();
+  color: $main_gray;
 }
 
 .button_search {
   @include button_search();
+}
+
+.badges {
+  width: 100%;
+  text-align: left;
 }
 
 .badge {
