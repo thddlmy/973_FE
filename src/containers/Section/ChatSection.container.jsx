@@ -75,7 +75,7 @@ const ChatSectionContainer = () => {
     return () => {
       stomp.disconnect();
     };
-  }, []);
+  });
 
   return (
     <ChatSection
