@@ -15,3 +15,11 @@ export const getChat = async ({ senderId, receiverId }) => {
   });
   return response;
 };
+
+export const getRoomChat = async ({ senderId, chatRoomId }) => {
+  const response = await GET({
+    url: '/chat/room',
+    params: { userId: senderId, roomId: chatRoomId },
+  });
+  return response;
+};

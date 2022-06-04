@@ -30,7 +30,7 @@ function App() {
         <PrivateRoute exact from="/my" component={MyPage} />
         <PrivateRoute
           exact
-          from="/chat/:senderId/:receiverId"
+          from="/chat/:senderId/:chatRoomId"
           component={ChatPage}
         />
         <PrivateRoute exact from="/chat" component={ChatListPage} />

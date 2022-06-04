@@ -1,22 +1,19 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { ChatSection } from '@components/Section';
-import { getChat } from '@apis/chat';
+import { getRoomChat } from '@apis/chat';
 import { useParams } from 'react-router-dom';
 import SockJS from 'sockjs-client';
 const { REACT_APP_END_POINT } = process.env;
 const Stomp = require('stompjs');
 
-let stomp;
-
-const connection = () => {
-  let sockJS = new SockJS(`${REACT_APP_END_POINT}/chat`);
-  stomp = Stomp.over(sockJS);
-};
-
 const ChatSectionContainer = () => {
-  const { senderId, receiverId } = useParams();
+  const { senderId, chatRoomId } = useParams();
   const [message, setMessage] = useState('');
   const [values, setValues] = useState({});
+
+  const sockJS = new SockJS(`${REACT_APP_END_POINT}/chat`);
+  let stomp = Stomp.over(sockJS);
+  stomp.debug = null;
 
   const handleChange = (e) => {
     setMessage(e.target.value);
@@ -51,32 +48,34 @@ const ChatSectionContainer = () => {
   };
 
   const init = useCallback(async () => {
-    const { data } = await getChat({ senderId, receiverId });
+    const { data } = await getRoomChat({ senderId, chatRoomId });
     setValues({
       chatRoomId: data.chatRoomId,
       messages: data.messages,
       senderId: data.senderId,
       senderNickname: data.senderNickname,
     });
-  }, [setValues, senderId, receiverId]);
+  }, [setValues, senderId, chatRoomId]);
 
   useEffect(() => {
     init();
   }, [init]);
 
   useEffect(() => {
-    connection();
+    if (message || !values.chatRoomId) return;
     stomp.connect({}, () => {
-      stomp.subscribe(`/sub/chat/room/${values.chatRoomId}`, (message) => {
-        const newMessage = JSON.parse(message.body);
+      stomp.subscribe(`/sub/chat/room/${chatRoomId}`, (msg) => {
+        const newMessage = JSON.parse(msg.body);
         setValues({
           ...values,
           messages: [...values.messages, newMessage],
         });
       });
     });
-    return () => stomp.disconnect();
-  }, [values, setValues]);
+    return () => {
+      stomp.disconnect();
+    };
+  }, []);
 
   return (
     <ChatSection

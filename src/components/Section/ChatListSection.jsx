@@ -20,7 +20,7 @@ const ChatListSection = (props) => {
             className={styles.chat__list}
             key={element.receiverId}
             onClick={() =>
-              history.push(`/chat/${element.senderId}/${element.receiverId}`)
+              history.push(`/chat/${element.senderId}/${element.chatRoomId}`)
             }
           >
             <img
