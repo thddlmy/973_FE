@@ -61,6 +61,10 @@ const ChatSectionContainer = () => {
   }, [setValues, senderId, receiverId]);
 
   useEffect(() => {
+    init();
+  }, [init]);
+
+  useEffect(() => {
     connection();
     stomp.connect({}, () => {
       stomp.subscribe(`/sub/chat/room/${values.chatRoomId}`, (message) => {
@@ -73,10 +77,6 @@ const ChatSectionContainer = () => {
     });
     return () => stomp.disconnect();
   }, [values, setValues]);
-
-  useEffect(() => {
-    init();
-  }, [init]);
 
   return (
     <ChatSection
