@@ -16,8 +16,6 @@ const PostDetailSection = (props) => {
   } = props;
   const className = cx(styles.root, rootClassName);
 
-  console.log(values);
-
   return (
     <div className={className}>
       <h1 className={styles.title}>게시글 조회</h1>

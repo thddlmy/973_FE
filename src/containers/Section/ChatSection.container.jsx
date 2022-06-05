@@ -48,7 +48,6 @@ const ChatSectionContainer = () => {
   };
 
   const init = useCallback(async () => {
-    console.log(chatRoomId.split('id-')[1]);
     const { data } = chatRoomId.includes('id-')
       ? await getChat({ senderId, receiverId: chatRoomId.split('id-')[1] })
       : await getRoomChat({ senderId, chatRoomId });
