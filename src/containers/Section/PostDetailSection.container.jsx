@@ -32,7 +32,7 @@ const PostDetailSectionContainer = () => {
   };
 
   const handleChatClick = async () => {
-    history.push(`/chat/${user.userId}/${values.userId}`);
+    history.push(`/chat/${user.userId}/id-${values.userId}`);
   };
 
   useEffect(() => {
