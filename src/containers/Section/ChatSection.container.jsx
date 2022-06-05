@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { ChatSection } from '@components/Section';
-import { getRoomChat } from '@apis/chat';
+import { getRoomChat, getChat } from '@apis/chat';
 import { useParams } from 'react-router-dom';
 import SockJS from 'sockjs-client';
 const { REACT_APP_END_POINT } = process.env;
@@ -48,7 +48,10 @@ const ChatSectionContainer = () => {
   };
 
   const init = useCallback(async () => {
-    const { data } = await getRoomChat({ senderId, chatRoomId });
+    console.log(chatRoomId.split('id-')[1]);
+    const { data } = chatRoomId.includes('id-')
+      ? await getChat({ senderId, receiverId: chatRoomId.split('id-')[1] })
+      : await getRoomChat({ senderId, chatRoomId });
     setValues({
       chatRoomId: data.chatRoomId,
       messages: data.messages,
